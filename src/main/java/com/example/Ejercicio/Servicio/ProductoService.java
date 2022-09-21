@@ -23,4 +23,19 @@ public class ProductoService implements IProductoServicio {
     public Optional<Producto> listarId(int id) {
         return Optional.empty();
     }
+
+    @Override
+    public int save(Producto p) {
+        int res = 0;
+        Producto producto = dataProducto.save(p);
+        if (!producto.equals(null)) {
+            res = 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public int delete(int id) {
+        return 0;
+    }
 }

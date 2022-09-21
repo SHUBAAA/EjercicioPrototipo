@@ -78,8 +78,7 @@
         <span class="navbar-brand mb-0 px-3" style="font-family:arial;">Inventario Empresa</span>
 
         <button type="button " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#popupbodega"
-                style="background-color:#00ADB5; border: #00ADB5;"><span
-                class="bi bi-plus-lg"></span> Nuevo Producto
+                style="background-color:#00ADB5; border: #00ADB5;"><span class="bi bi-plus-lg"></span> Nuevo Producto
         </button>
     </div>
 </nav>
@@ -87,12 +86,12 @@
 <nav class="navbar bg-light">
     <div class="container">
         <form class="d-flex" role="search">
-            <input type="search" class="form-control" placeholder="Busqueda de Producto"
-                   aria-label="Search" style="width: 300px;">
+            <input type="search" class="form-control" placeholder="Busqueda de Producto" aria-label="Search"
+                   style="width: 300px;">
         </form>
         <button type="button button" class="btn btn-primary"
                 style="background-color:#FFFFFF; border-color: #000000; color: #101540; font-size: large;">Ascendente
-            <span class="bi bi-chevron-down"></span> </button>
+            <span class="bi bi-chevron-down"></span></button>
     </div>
 </nav>
 
@@ -104,34 +103,31 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form th:action="@{/save}" th:object="${producto}" method="POST">
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Nombre Producto</label>
-                        <input type="text" class="form-control" id="recipient-name"
-                               placeholder="Ingrese nombre producto">
+                        <label class="col-form-label">ID</label>
+                        <input th:field="${id}" type="text" class="form-control" placeholder="Ingrese ID producto">
                     </div>
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Precio</label>
-                        <input type="text" class="form-control" id="recipient-name"
-                               placeholder="Ingrese Precio Producto">
+                        <label class="col-form-label">Nombre</label>
+                        <input th:field="${nombre}" type="text" class="form-control"
+                               placeholder="Ingrese Nombre Producto">
                     </div>
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Fecha</label>
-                        <input type="text" class="form-control" id="recipient-name"
-                               placeholder="DD/MM/AAAA">
+                        <label class="col-form-label">Descripcion</label>
+                        <input th:field="${descripcion}" type="text" class="form-control"
+                               placeholder="Ingrese Descripcion Producto">
                     </div>
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Categoria</label>
-                        <input type="text" class="form-control" id="recipient-name"
-                               placeholder="Ingrese categoria">
+                        <label class="col-form-label">Categoria</label>
+                        <input th:field="${cantidad}" type="text" class="form-control"
+                               placeholder="Ingrese Cantidad">
                     </div>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Cantidad</label>
-                        <input type="text" class="form-control" id="recipient-name"
-                               placeholder="Ingrese La Cantidad">
-                    </div>
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" style="background-color:#00ADB5; border:#00ADB5; ">Crear</button>
+                        <input type="submit" class="btn btn-primary"
+                               style="background-color:#00ADB5; border:#00ADB5; ">Crear
+                        </input>
                     </div>
                 </form>
             </div>

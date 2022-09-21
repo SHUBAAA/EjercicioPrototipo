@@ -1,9 +1,8 @@
 package com.example.Ejercicio.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import javax.persistence.*;
 
 @Entity
 public class Producto {
@@ -13,6 +12,18 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private int cantidad;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     public Producto() {
     }
