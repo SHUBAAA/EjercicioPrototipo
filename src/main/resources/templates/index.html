@@ -23,7 +23,7 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #00ADB5;
+            background-color: #181818;
             overflow-x: hidden;
             padding-top: 20px;
         }
@@ -32,7 +32,7 @@
             padding: 10px 10px 6px;
             text-decoration: none;
             font-size: 20px;
-            color: #1C1B1F;
+            color: #F5F5F5;
             display: block;
             text-align: center;
         }
@@ -58,7 +58,7 @@
         }
 
         .navbar-custom {
-            background-color: #393E46;
+            background-color: #F6648C;
         }
 
         .navbar-custom .navbar-brand,
@@ -75,14 +75,14 @@
 <body>
 <nav class="navbar navbar-custom py-3">
     <div class="container ">
-        <span class="navbar-brand mb-0 px-3" style="font-family:arial;">Inventario Empresa</span>
+        <span class="navbar-brand mb-0 px-3" style="font-family:arial;">Inventario </span>
 
         <button type="button " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#popupbodega"
-                style="background-color:#00ADB5; border: #00ADB5;"><span class="bi bi-plus-lg"></span> Nuevo Producto
+                style="background-color:#F5F5F5; border: #F5F5F5; color: #181818"><span class="bi bi-plus-lg"></span>
+            Nuevo Producto
         </button>
     </div>
 </nav>
-
 
 
 <div class="modal fade" id="popupbodega">
@@ -108,42 +108,8 @@
                                placeholder="Ingrese Descripcion Producto">
                     </div>
                     <div class="mb-3">
-                        <label class="col-form-label">Cantidad</label>
-                        <input name="cantidad" type="text" class="form-control" placeholder="Ingrese Cantidad">
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary" style="background-color:#00ADB5; border:#00ADB5;">
-
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="popupbodegamod">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modificar Producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-
-            <div class="modal-body">
-                <form th:action="@{/save}" th:object="${producto}" method="POST">
-
-                    <div class="mb-3">
-                        <label class="col-form-label">Nombre</label>
-                        <input name="nombre" type="text" class="form-control"
-                               placeholder="Ingrese Nombre Producto"/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="col-form-label">Descripcion</label>
-                        <input name="descripcion" type="text" class="form-control"
-                               placeholder="Ingrese Descripcion Producto">
+                        <label class="col-form-label">Categoria</label>
+                        <input name="categoria" type="text" class="form-control" placeholder="Ingrese Categoria">
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Cantidad</label>
@@ -152,26 +118,19 @@
 
 
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary"
-                               style="background-color:#00ADB5; border:#00ADB5;">
-                        </input>
+                        <input type="submit" class="btn btn-primary" style="background-color:#F6648C; border:#F6648C;">
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
 
 
 <div class="sidenav d-flex flex-column justify-content-between h-100">
 
     <div>
-        <a href="/admin" data-bs-toggle="tooltip">
-
-            <i class="bi bi-person-square fs-2"></i>
-            Admin
-        </a>
     </div>
     <div>
         <a href="/login" data-bs-toggle="tooltip">
@@ -190,7 +149,9 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
+                <th>Categoria</th>
                 <th>Cantidad</th>
+                <th>&nbsp;</th>
             </tr>
             </thead>
             <tbody>
@@ -198,11 +159,13 @@
                 <td th:text="${producto.id}"></td>
                 <td th:text="${producto.nombre}"></td>
                 <td th:text="${producto.descripcion}"></td>
+                <td th:text="${producto.categoria}"></td>
                 <td th:text="${producto.cantidad}"></td>
 
+
                 <td>
-                    <a th:href="@{/editar/} + ${producto.id}"  class="btn btn-danger"> editar </a>
-                    <a th:href="@{/eliminar/} + ${producto.id}"  class="btn btn-danger"> Eliminar </a>
+                    <a th:href="@{/editar/} + ${producto.id}" class="btn btn-secondary"> Editar </a>
+                    <a th:href="@{/eliminar/} + ${producto.id}" class="btn btn-danger"> Eliminar </a>
                 </td>
             </tr>
             </tbody>

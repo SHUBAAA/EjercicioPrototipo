@@ -9,19 +9,25 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false)
     private String nombre;
+    @Column(nullable = false)
     private String descripcion;
+    @Column(nullable = false)
     private int cantidad;
+    @Column(nullable = false)
+    private String categoria;
 
 
     public Producto() {
     }
 
-    public Producto(int id, String nombre, String descripcion, int cantidad) {
+    public Producto(int id, String nombre, String descripcion, int cantidad, String categoria) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
+        this.categoria = categoria;
     }
 
     public int getId() {
@@ -54,5 +60,13 @@ public class Producto {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }

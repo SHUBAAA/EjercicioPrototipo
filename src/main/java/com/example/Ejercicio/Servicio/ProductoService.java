@@ -15,12 +15,12 @@ public class ProductoService{
     private RepoProducto dataProducto;
 
 
-    public List<Producto> listar() {
+    public List<Producto> mostrar() {
         return (List<Producto>) dataProducto.findAll();
     }
 
 
-    public Optional<Producto> listarId(int id) {
+    public Optional<Producto> getID(int id) {
         return dataProducto.findById(id);
     }
 

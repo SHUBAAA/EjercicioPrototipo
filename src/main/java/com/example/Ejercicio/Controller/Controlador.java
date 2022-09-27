@@ -23,25 +23,28 @@ public class Controlador {
 
     @GetMapping("/listar")
     public String listar(Model model) {
-        List<Producto> productos = service.listar();
+        List<Producto> productos = service.mostrar();
         model.addAttribute("productos", productos);
         return "index";
     }
 
-
-    @PostMapping("/save")
-    public String save(@Validated Producto p, Model model){
-        service.save(p);
-        return "redirect:/listar";
-    }
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable int id, Model model){
-        Optional<Producto> producto = service.listarId(id);
+        Optional<Producto> producto = service.getID(id);
         model.addAttribute("producto",producto);
         return "modificar";
     }
+
+    @PostMapping("/save")
+    public String save(@Validated Producto p, Model model) {
+        service.save(p);
+        return "redirect:/listar";
+    }
+
+
+
     @GetMapping("/eliminar/{id}")
-    public String delete(@PathVariable int id, Model model){
+    public String delete(@PathVariable int id, Model model) {
         service.delete(id);
         return "redirect:/listar";
     }
