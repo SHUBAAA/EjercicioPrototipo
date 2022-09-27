@@ -83,17 +83,7 @@
     </div>
 </nav>
 
-<nav class="navbar bg-light">
-    <div class="container">
-        <form class="d-flex" role="search">
-            <input type="search" class="form-control" placeholder="Busqueda de Producto" aria-label="Search"
-                   style="width: 300px;">
-        </form>
-        <button type="button button" class="btn btn-primary"
-                style="background-color:#FFFFFF; border-color: #000000; color: #101540; font-size: large;">Ascendente
-            <span class="bi bi-chevron-down"></span></button>
-    </div>
-</nav>
+
 
 <div class="modal fade" id="popupbodega">
     <div class="modal-dialog">
@@ -104,17 +94,13 @@
             </div>
 
 
-
             <div class="modal-body">
                 <form th:action="@{/save}" th:object="${producto}" method="POST">
-                    <div class="mb-3">
-                        <label class="col-form-label">ID</label>
-                        <input type="text" class="form-control" placeholder="Ingrese ID producto">
-                    </div>
+
                     <div class="mb-3">
                         <label class="col-form-label">Nombre</label>
-                        <input name="nombre" type="text" class="form-control" />
-                               placeholder="Ingrese Nombre Producto">
+                        <input name="nombre" type="text" class="form-control"
+                               placeholder="Ingrese Nombre Producto"/>
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Descripcion</label>
@@ -122,17 +108,52 @@
                                placeholder="Ingrese Descripcion Producto">
                     </div>
                     <div class="mb-3">
-                        <label class="col-form-label">Categoria</label>
-                        <input name="cantidad" type="text" class="form-control"
-                               placeholder="Ingrese Cantidad">
+                        <label class="col-form-label">Cantidad</label>
+                        <input name="cantidad" type="text" class="form-control" placeholder="Ingrese Cantidad">
                     </div>
 
 
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" style="background-color:#00ADB5; border:#00ADB5;">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="popupbodegamod">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modificar Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+            <div class="modal-body">
+                <form th:action="@{/save}" th:object="${producto}" method="POST">
+
+                    <div class="mb-3">
+                        <label class="col-form-label">Nombre</label>
+                        <input name="nombre" type="text" class="form-control"
+                               placeholder="Ingrese Nombre Producto"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Descripcion</label>
+                        <input name="descripcion" type="text" class="form-control"
+                               placeholder="Ingrese Descripcion Producto">
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Cantidad</label>
+                        <input name="cantidad" type="text" class="form-control" placeholder="Ingrese Cantidad">
+                    </div>
 
 
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary"
-                               style="background-color:#00ADB5; border:#00ADB5; ">Crear
+                               style="background-color:#00ADB5; border:#00ADB5;">
                         </input>
                     </div>
                 </form>
@@ -142,28 +163,22 @@
 </div>
 
 
-<div class="sidenav">
 
-    <a href="bodega.html" data-bs-toggle="tooltip">
+<div class="sidenav d-flex flex-column justify-content-between h-100">
 
-        <i class="bi bi-box2 fs-3"></i>
-        Bodega
-    </a>
-    <a href="caja.html" data-bs-toggle="tooltip">
+    <div>
+        <a href="/admin" data-bs-toggle="tooltip">
 
-        <i class="bi bi-cart2 fs-1"></i>
-        Caja
-    </a>
-    <a href="admin.html" data-bs-toggle="tooltip">
-
-        <i class="bi bi-person-square fs-2"></i>
-        Admin
-    </a>
-
-    <a href="index.html" data-bs-toggle="tooltip">
-        <i class="bi bi-box-arrow-right fs-2"></i>
-        <h6>Salir</h6>
-    </a>
+            <i class="bi bi-person-square fs-2"></i>
+            Admin
+        </a>
+    </div>
+    <div>
+        <a href="/login" data-bs-toggle="tooltip">
+            <i class="bi bi-box-arrow-right fs-2"></i>
+            <h6>Salir</h6>
+        </a>
+    </div>
 
 </div>
 
@@ -186,8 +201,8 @@
                 <td th:text="${producto.cantidad}"></td>
 
                 <td>
-                    <a class="btn btn-warning"> Editar</a>
-                    <a class="btn btn-danger"> Eliminar </a>
+                    <a th:href="@{/editar/} + ${producto.id}"  class="btn btn-danger"> editar </a>
+                    <a th:href="@{/eliminar/} + ${producto.id}"  class="btn btn-danger"> Eliminar </a>
                 </td>
             </tr>
             </tbody>

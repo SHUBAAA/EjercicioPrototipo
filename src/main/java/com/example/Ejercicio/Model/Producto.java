@@ -7,39 +7,28 @@ import javax.persistence.*;
 @Entity
 public class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombre;
     private String descripcion;
     private int cantidad;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
 
     public Producto() {
     }
 
-    public Producto(Long id, String nombre, String descripcion, int cantidad) {
+    public Producto(int id, String nombre, String descripcion, int cantidad) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

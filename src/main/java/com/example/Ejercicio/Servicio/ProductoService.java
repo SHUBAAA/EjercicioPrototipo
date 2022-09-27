@@ -1,7 +1,7 @@
 package com.example.Ejercicio.Servicio;
 
 import com.example.Ejercicio.Model.Producto;
-import com.example.Ejercicio.Repository.InterProducto;
+import com.example.Ejercicio.Repository.RepoProducto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,22 +9,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoService implements IProductoServicio {
+public class ProductoService{
 
     @Autowired
-    private InterProducto dataProducto;
+    private RepoProducto dataProducto;
 
-    @Override
+
     public List<Producto> listar() {
         return (List<Producto>) dataProducto.findAll();
     }
 
-    @Override
+
     public Optional<Producto> listarId(int id) {
-        return Optional.empty();
+        return dataProducto.findById(id);
     }
 
-    @Override
+
     public int save(Producto p) {
         int res = 0;
         Producto producto = dataProducto.save(p);
@@ -34,8 +34,8 @@ public class ProductoService implements IProductoServicio {
         return 0;
     }
 
-    @Override
-    public int delete(int id) {
-        return 0;
+
+    public void delete(int id) {
+        dataProducto.deleteById(id);
     }
 }

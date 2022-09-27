@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+          crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+            crossorigin="anonymous"></script>
+
+    <style>
+
+
+        .navbar-custom {
+            background-color: #393E46;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+            color: #FFFF;
+        }
+    </style>
+</head>
+<body>
+<!-- Aqui va el tope de pagina -->
+
+<nav class="navbar navbar-custom">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 px-5">Inicio de sesi&oacute;n</span>
+    </div>
+</nav>
+
+<!-- Aqui va el Log in -->
+
+
+<div class="container justify-content-center ">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="login-wrap p-4 p-md-5">
+                <form action="#" th:action="@{/login}" th:object="${usuario}" method="post">
+                    <label class="label">Rut</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control rounded-left" name="nombreuser"
+                               placeholder="Ingrese su rut" required/>
+                    </div>
+                    <p></p>
+
+                    <div class="form-group mb-3">
+                        <label class="label">Contrase&ntilde;a</label>
+                        <input type="password" class="form-control" name="contrasena"
+                               placeholder="Ingrese su Contrase&ntilde;a" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-danger">
+                            Iniciar Sesi&oacute;n
+                        </button>
+
+                        <button type="button " class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#popupbodega"
+                                style="background-color:#00ADB5; border: #00ADB5;"><span class="bi bi-plus-lg"></span> Nuevo usuario</button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="popupbodega">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nuevo Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+            <div class="modal-body">
+                <form th:action="@{/saveuser}" th:object="${usuario}" method="POST">
+
+                    <div class="mb-3">
+                        <label class="col-form-label">Nombre Usuario</label>
+                        <input name="nombreuser" type="text" class="form-control"
+                               placeholder="Ingrese Nombre usuario"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Contrase&ntilde;a</label>
+                        <input name="contrasena" type="text" class="form-control"
+                               placeholder="Ingrese su Contrase&ntilde;a">
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary"
+                               style="background-color:#00ADB5; border:#00ADB5;">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
