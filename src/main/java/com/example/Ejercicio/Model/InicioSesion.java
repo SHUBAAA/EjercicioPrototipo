@@ -3,10 +3,12 @@ package com.example.Ejercicio.Model;
 import javax.persistence.*;
 
 /**
- * @Manuel Esta clase es el modelo para InicioSesion.
+ * Esta clase es el modelo para InicioSesion.
  *
  * <p>
  * Esta clase crea la base de datos InicioSesion y crea las respectivas Columnas ingresadas como variables. * </p>
+ *
+ * @author Manuel Alvial
  */
 @Entity
 public class InicioSesion {

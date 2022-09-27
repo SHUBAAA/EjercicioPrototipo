@@ -30,8 +30,7 @@ public class InicioSesionService {
      * @autor Manuel Alvial
      */
     public InicioSesion Iniciar(String nombreuser, String contrasena) {
-        InicioSesion usuario = dataInicioSesion.findByNombreuserAndContrasena(nombreuser, contrasena);
-        return usuario;
+        return dataInicioSesion.findByNombreuserAndContrasena(nombreuser, contrasena);
     }
 
     /**

@@ -5,11 +5,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import javax.persistence.*;
 
 /**
- * @Manuel Esta clase es el modelo para Producto.
+ * Esta clase es el modelo para Producto.
  *
  * <p>
  * Esta clase crea la base de datos Producto y crea las respectivas Columnas ingresadas como variables.
  * </p>
+ *
+ * @author Manuel Alvial
  */
 
 @Entity

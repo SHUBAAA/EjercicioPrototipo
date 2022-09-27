@@ -46,9 +46,6 @@ public class Controlador {
         return "index";
     }
 
-    /**
-     * @Manuel Esta Funcion Sirve para editar un producto ya creado en la base de datos de producto, las llama por su id correspondiente.
-     */
 
     /**
      * <p>
@@ -80,9 +77,7 @@ public class Controlador {
         return "redirect:/main";
     }
 
-    /**
-     * @Manuel Esta funcion obtiene la id de un producto en especifico y la elimina de la base de datos.
-     */
+
     /**
      * <p>
      * Esta funcion elimina un Producto de la base de datos.

@@ -38,9 +38,7 @@ public class ControladorInicioSesion {
         return logindata;
     }
 
-    /**
-     * @Manuel Esta funcion toma los datos ingresados, y las compara con la base de datos de InicioSesion.
-     */
+
     /**
      * <p>
      * Esta funcion tomas los datos ingresados previamente, y los compara con la base de datos de InicioSesion.
@@ -62,9 +60,7 @@ public class ControladorInicioSesion {
         }
     }
 
-    /**
-     * @Manuel Esta funcion toma los datos ingresados en la ventana modal que se encuentra en login, y los guarda en la base de datos de InicioSesion
-     */
+
 
     /**
      * <p>
