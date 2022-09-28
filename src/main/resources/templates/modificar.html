@@ -41,7 +41,7 @@
             <div class="login-wrap p-4 p-md-5">
                 <form th:action="@{/save}" th:object="${producto}" method="POST">
                     <div class="form-group">
-                        <label>ID Producto : </label>
+                        <label>ID</label>
                         <input type="text" name="id" th:field="*{id}" class="form-control"
                                readonly="readonly">
                     </div>

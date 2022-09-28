@@ -132,11 +132,10 @@
 
     <div>
     </div>
-    <div>
-        <a href="/login" data-bs-toggle="tooltip">
-            <i class="bi bi-box-arrow-right fs-2"></i>
-            <h6>Salir</h6>
-        </a>
+    <div class="container justify-content-between">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Salir" />
+        </form>
     </div>
 
 </div>
