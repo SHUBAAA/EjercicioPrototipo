@@ -40,7 +40,11 @@
         <div class="col-md-6 col-lg-5">
             <div class="login-wrap p-4 p-md-5">
                 <form th:action="@{/save}" th:object="${producto}" method="POST">
-
+                    <div class="form-group">
+                        <label>ID Producto : </label>
+                        <input type="text" name="id" th:field="*{id}" class="form-control"
+                               readonly="readonly">
+                    </div>
 
 
                     <div class="mb-3">
@@ -55,11 +59,13 @@
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Categoria</label>
-                        <input name="categoria" type="text" th:field="*{categoria}" class="form-control" placeholder="Ingrese Categoria">
+                        <input name="categoria" type="text" th:field="*{categoria}" class="form-control"
+                               placeholder="Ingrese Categoria">
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Cantidad</label>
-                        <input name="cantidad" type="text" th:field="*{cantidad}" class="form-control" placeholder="Ingrese Cantidad">
+                        <input name="cantidad" type="text" th:field="*{cantidad}" class="form-control"
+                               placeholder="Ingrese Cantidad">
                     </div>
 
 
