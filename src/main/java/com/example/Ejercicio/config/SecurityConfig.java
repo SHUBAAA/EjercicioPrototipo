@@ -11,18 +11,23 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-
+                .authorizeHttpRequests((requests) -> requests
+                        .antMatchers("/", "/home").permitAll()
+                        .anyRequest().authenticated()
+                )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
+
         return http.build();
     }
 
