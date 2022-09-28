@@ -41,34 +41,30 @@
             <div class="login-wrap p-4 p-md-5">
                 <form th:action="@{/save}" th:object="${producto}" method="POST">
 
-                    <div class="form-group">
-                        <label>ID : </label>
-                        <input type="text" name="id" th:field="*{id}" class="form-control"
-                               readonly="readonly">
-                    </div>
+
 
                     <div class="mb-3">
                         <label class="col-form-label">Nombre</label>
-                        <input name="nombre" type="text" class="form-control"
+                        <input name="nombre" type="text" th:field="*{nombre}" class="form-control"
                                placeholder="Ingrese Nombre Producto"/>
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Descripcion</label>
-                        <input name="descripcion" type="text" class="form-control"
+                        <input name="descripcion" th:field="*{descripcion}" type="text" class="form-control"
                                placeholder="Ingrese Descripcion Producto">
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Categoria</label>
-                        <input name="categoria" type="text" class="form-control" placeholder="Ingrese Categoria">
+                        <input name="categoria" type="text" th:field="*{categoria}" class="form-control" placeholder="Ingrese Categoria">
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Cantidad</label>
-                        <input name="cantidad" type="text" class="form-control" placeholder="Ingrese Cantidad">
+                        <input name="cantidad" type="text" th:field="*{cantidad}" class="form-control" placeholder="Ingrese Cantidad">
                     </div>
 
 
                     <div class="modal-footer ">
-                        <a href="/listar" type="button" class="btn btn-danger">Cancelar</a>
+                        <a href="/main" type="button" class="btn btn-danger">Cancelar</a>
                         <input type="submit" class="btn btn-primary"
                                style="background-color:#F6648C; border:#F6648C;">
 
