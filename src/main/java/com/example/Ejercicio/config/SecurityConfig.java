@@ -1,76 +1,52 @@
 package com.example.Ejercicio.Config;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import com.example.Ejercicio.Servicio.JpaUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import javax.sql.DataSource;
 
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableMethodSecurity
+public class SecurityConfig {
+    private final JpaUserDetailsService jpaUserDetailsService;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
-    private DataSource dataSource;
-
-    @Value("${spring.queries.users-query}")
-    private String usersQuery;
-
-    @Value("${spring.queries.roles-query}")
-    private String rolesQuery;
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().usersByUsernameQuery(usersQuery).authoritiesByUsernameQuery(rolesQuery)
-                .dataSource(dataSource).passwordEncoder(bCryptPasswordEncoder);
+    public SecurityConfig(JpaUserDetailsService jpaUserDetailsService) {
+        this.jpaUserDetailsService = jpaUserDetailsService;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
-        http.authorizeRequests()
-                // URLs matching for access rights
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/home/**").hasAnyAuthority("SUPER_USER", "ADMIN_USER", "SITE_USER")
-                .antMatchers("/admin/**").hasAnyAuthority("SUPER_USER","ADMIN_USER")
-                .anyRequest().authenticated()
-                .and()
-                // form login
-                .csrf().disable().formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error=true")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .and()
-                // logout
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").and()
-                .exceptionHandling()
-                .accessDeniedPage("/access-denied");
+    // Filtro de seguridad
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                // No permite solicitudes a menos que el usuario esté registrado
+                .authorizeRequests(consulta -> consulta
+                        // Se añaden excepciones, donde se podrá ingresar sin autenticación
+                        .mvcMatchers("/", "/inicio", "/register").permitAll()
+                        .anyRequest().authenticated())
+                // Así spring security identifica como obtener los datos de los usuarios
+                .userDetailsService(jpaUserDetailsService)
+                .headers(headers -> headers.frameOptions().sameOrigin())
+                // Autenticación básica HTTP, puede ser así (logeo básico) o un form de inicio de sesión
+                .formLogin((formulario) -> formulario
+                        // permite acceso a todos
+                        .loginPage("/login")
+                        .permitAll()
+                )
+                .logout((cerrarSesion) -> cerrarSesion.permitAll())
+                .build();
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+    //Cifrar contraseña
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
+
 }

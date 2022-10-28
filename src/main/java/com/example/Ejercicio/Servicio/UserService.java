@@ -1,39 +1,39 @@
 package com.example.Ejercicio.Servicio;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
-import com.example.Ejercicio.Model.Role;
 import com.example.Ejercicio.Model.User;
-import com.example.Ejercicio.Repository.RoleRepository;
 import com.example.Ejercicio.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class UserService {
 
     @Autowired
-    BCryptPasswordEncoder encoder;
-    @Autowired
-    RoleRepository roleRepository;
-    @Autowired
-    UserRepository userRepository;
+    private UserRepository data;
 
-
-    public void saveUser(User user) {
-        user.setPassword(encoder.encode(user.getPassword()));
-        user.setStatus("VERIFIED");
-        Role userRole = roleRepository.findByRole("SITE_USER");
-        userRepository.save(user);
+    public List<User> listar() {
+        return (List<User>) data.findAll();
     }
 
 
-    public boolean isUserAlreadyPresent(User user) {
-        // Try to implement this method, as assignment.
-        return false;
+    public Optional<User> listarId(Long id) {
+        return data.findById(id);
+    }
+
+
+    public void guardar(User u) {
+        data.save(u);
+    }
+
+
+    public String cifrarClave(String clave) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder.encode(clave);
     }
 
 }
