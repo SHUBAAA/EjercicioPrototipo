@@ -39,7 +39,7 @@ public class Controlador {
      *
      * @autor Manuel Alvial
      */
-    @GetMapping("/main")
+    @GetMapping({"/main","/"})
     public String listar(Model model) {
         List<Producto> productos = service.mostrar();
         model.addAttribute("productos", productos);

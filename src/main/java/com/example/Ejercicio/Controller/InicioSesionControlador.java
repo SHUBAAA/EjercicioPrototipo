@@ -35,7 +35,7 @@ public class InicioSesionControlador {
 
         userData.guardar(usuario);
         status.setComplete();
-        return "redirect:/saludo";
+        return "redirect:/main";
     }
 
     @GetMapping("/info-usuario")
