@@ -1,7 +1,6 @@
 package com.example.Ejercicio.Servicio;
 
 
-
 import com.example.Ejercicio.Model.UserSecurity;
 import com.example.Ejercicio.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
