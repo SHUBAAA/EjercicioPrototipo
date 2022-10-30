@@ -19,8 +19,8 @@ public class EjercicioApplication {
 	CommandLineRunner commandLineRunner(UserRepository usuarios, PasswordEncoder encoder) {
 		return args -> {
 
-			usuarios.save(new User("user", encoder.encode("a"), "ROLE_USER"));
-			usuarios.save(new User("admin", encoder.encode("a"), "ROLE_ADMIN"));
+
+			usuarios.save(new User("a", encoder.encode("a"), "ADMIN","11.222.333-4","ottitohot@gmail.com"));
 
 		};
 	}

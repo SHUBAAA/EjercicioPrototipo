@@ -126,15 +126,16 @@
 </div>
 
 
-
-
 <div class="sidenav d-flex flex-column justify-content-between h-100">
 
     <div>
     </div>
     <div class="container justify-content-between">
         <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Salir" />
+            <button  data-bs-toggle="tooltip">
+                <i class="bi bi-box-arrow-right fs-2"></i>
+                <h6>Salir</h6>
+            </button>
         </form>
     </div>
 

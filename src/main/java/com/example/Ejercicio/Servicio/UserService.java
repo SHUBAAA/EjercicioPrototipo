@@ -14,20 +14,20 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepository data;
+    private UserRepository dataUser;
 
     public List<User> listar() {
-        return (List<User>) data.findAll();
+        return (List<User>) dataUser.findAll();
     }
 
 
     public Optional<User> listarId(Long id) {
-        return data.findById(id);
+        return dataUser.findById(id);
     }
 
 
     public void guardar(User u) {
-        data.save(u);
+        dataUser.save(u);
     }
 
 
