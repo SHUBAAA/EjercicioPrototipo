@@ -29,7 +29,6 @@ public class ControladorAdmin {
     public String guardarUsuario(User usuario, SessionStatus status) {
 
         usuario.setClave(userservice.cifrarClave(usuario.getClave()));
-        usuario.setRoles("ROLE_USER");
         userservice.guardar(usuario);
         status.setComplete();
         return "redirect:/admin";

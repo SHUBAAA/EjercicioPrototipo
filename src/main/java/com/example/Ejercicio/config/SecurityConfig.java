@@ -27,8 +27,8 @@ public class SecurityConfig {
         return http
                 // No permite solicitudes a menos que el usuario esté registrado
                 .authorizeRequests(consulta -> consulta
-                        // Se añaden excepciones, donde se podrá ingresar sin autenticación
-                        .mvcMatchers("/register").permitAll()
+                        // Se añaden excepciones en mvc matchers, donde se podrá ingresar sin autenticación
+                        .mvcMatchers().permitAll()
                         .anyRequest().authenticated())
                 // Así spring security identifica como obtener los datos de los usuarios
                 .userDetailsService(jpaUserDetailsService)
