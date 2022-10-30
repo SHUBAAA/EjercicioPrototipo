@@ -89,24 +89,24 @@
             <div class="modal-body">
                 <form th:action="@{/register}" th:object="${usuario}" method="post">
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">RUT</label>
+                        <label class="col-form-label">RUT</label>
                         <input type="text" class="form-control" name="rut"
-                               placeholder="Ingrese su RUT">
+                               placeholder="Ingrese su RUT" required>
                     </div>
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Nombre</label>
+                        <label class="col-form-label">Nombre</label>
                         <input type="text" class="form-control" name="nombre"
-                               placeholder="Ingrese su Nombre">
+                               placeholder="Ingrese su Nombre" required>
                     </div>
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Email</label>
+                        <label class="col-form-label">Email</label>
                         <input type="text" class="form-control" name="email"
-                               placeholder="Ingrese su Email">
+                               placeholder="Ingrese su Email" required>
                     </div>
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Contrase&ntilde;a</label>
-                        <input type="text" class="form-control" name="clave"
-                               placeholder="Ingrese su Contrase&ntilde;a">
+                        <label class="col-form-label">Contrase&ntilde;a</label>
+                        <input type="password" class="form-control" name="clave"
+                               placeholder="Ingrese su Contrase&ntilde;a" required>
                     </div>
 
                     <div class="mb-3">
@@ -126,36 +126,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="popupusermod">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Cambiar Contraseña</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Contrase&ntilde;a</label>
-                        <input type="text" class="form-control" id="recipient-name"
-                               placeholder="Ingrese su Contrase&ntilde;a">
-                    </div>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Confirme Contrase&ntilde;a</label>
-                        <input type="text" class="form-control" id="recipient-name"
-                               placeholder="Ingrese su Contrase&ntilde;a">
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary"
-                                style="background-color:#00ADB5; border:#00ADB5; ">Crear
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="sidenav d-flex flex-column justify-content-between h-100">
     <div>
@@ -212,8 +182,10 @@
 
 
                         <td>
-                            <a class="btn btn-secondary"> Cambiar Contra&ntilde;esa </a>
-                            <a class="btn btn-danger"> Quitar </a>
+                            <a th:href="@{/editaruser/} + ${usuario.id}" class="btn btn-secondary"> Modificar
+                                Usuario </a>
+                            <a th:href="@{/eliminaruser/} + ${usuario.id}" class="btn btn-danger"> Quitar </a>
+
                         </td>
                     </tr>
                     </tbody>

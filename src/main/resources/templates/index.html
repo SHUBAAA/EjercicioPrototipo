@@ -98,20 +98,21 @@
                     <div class="mb-3">
                         <label class="col-form-label">Nombre</label>
                         <input name="nombre" type="text" class="form-control"
-                               placeholder="Ingrese Nombre Producto"/>
+                               placeholder="Ingrese Nombre Producto" required>
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Descripcion</label>
                         <input name="descripcion" type="text" class="form-control"
-                               placeholder="Ingrese Descripcion Producto">
+                               placeholder="Ingrese Descripcion Producto" required>
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Categoria</label>
-                        <input name="categoria" type="text" class="form-control" placeholder="Ingrese Categoria">
+                        <input name="categoria" type="text" class="form-control" placeholder="Ingrese Categoria"
+                               required>
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Cantidad</label>
-                        <input name="cantidad" type="text" class="form-control" placeholder="Ingrese Cantidad">
+                        <input name="cantidad" type="text" class="form-control" placeholder="Ingrese Cantidad" required>
                     </div>
 
 
@@ -132,7 +133,7 @@
     </div>
     <div class="container justify-content-between">
         <form th:action="@{/logout}" method="post">
-            <button  data-bs-toggle="tooltip">
+            <button data-bs-toggle="tooltip">
                 <i class="bi bi-box-arrow-right fs-2"></i>
                 <h6>Salir</h6>
             </button>
@@ -164,8 +165,8 @@
 
 
                 <td>
-                    <a th:href="@{/editar/} + ${producto.id}" class="btn btn-secondary"> Editar </a>
-                    <a th:href="@{/eliminar/} + ${producto.id}" class="btn btn-danger"> Eliminar </a>
+                    <a th:href="@{/editarprod/} + ${producto.id}" class="btn btn-secondary"> Editar </a>
+                    <a th:href="@{/eliminarprod/} + ${producto.id}" class="btn btn-danger"> Eliminar </a>
                 </td>
             </tr>
             </tbody>

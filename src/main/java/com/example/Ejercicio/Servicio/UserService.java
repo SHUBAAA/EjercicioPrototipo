@@ -21,13 +21,17 @@ public class UserService {
     }
 
 
-    public Optional<User> listarId(Long id) {
+    public Optional<User> getID(Long id) {
         return dataUser.findById(id);
     }
 
 
     public void guardar(User u) {
         dataUser.save(u);
+    }
+
+    public void delete(Long id) {
+        dataUser.deleteById(id);
     }
 
 

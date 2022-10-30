@@ -31,11 +31,11 @@ public class ControladorProducto {
     }
 
 
-    @GetMapping("/editar/{id}")
+    @GetMapping("/editarprod/{id}")
     public String editar(@PathVariable int id, Model model) {
         Optional<Producto> producto = productoservice.getID(id);
         model.addAttribute("producto", producto);
-        return "modificar";
+        return "modproducto";
     }
 
 
@@ -46,8 +46,8 @@ public class ControladorProducto {
     }
 
 
-    @GetMapping("/eliminar/{id}")
-    public String delete(@PathVariable int id, Model model) {
+    @GetMapping("/eliminarprod/{id}")
+    public String delete(@PathVariable int id) {
         productoservice.delete(id);
         return "redirect:/main";
     }
