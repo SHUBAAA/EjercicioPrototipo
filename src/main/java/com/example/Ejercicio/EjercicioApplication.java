@@ -9,4 +9,18 @@ public class EjercicioApplication {
 		SpringApplication.run(EjercicioApplication.class, args);
 	}
 
+<<<<<<< Updated upstream
+=======
+
+	@Bean
+	CommandLineRunner commandLineRunner(UserRepository usuarios, PasswordEncoder encoder) {
+		return args -> {
+
+
+			usuarios.save(new User("a", encoder.encode("a"), "ADMIN","11.222.333-4","ottito@gmail.com"));
+
+		};
+	}
+
+>>>>>>> Stashed changes
 }
