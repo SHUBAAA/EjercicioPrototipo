@@ -18,9 +18,8 @@ public class InicioSesion {
 
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     @Column(nullable = false)
     private String nombreuser;
     @Column(nullable = false)
@@ -32,11 +31,18 @@ public class InicioSesion {
     public InicioSesion() {
     }
 
-    public InicioSesion(Long id, String nombreuser, String contrasena, String correo) {
-        this.id = id;
+
+    public InicioSesion(String nombreuser, String contrasena, String correo) {
         this.nombreuser = nombreuser;
         this.contrasena = contrasena;
         this.correo = correo;
     }
 
+    public String getNombreuser() {
+        return nombreuser;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
 }

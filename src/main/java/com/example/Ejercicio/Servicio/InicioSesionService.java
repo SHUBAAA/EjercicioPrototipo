@@ -42,7 +42,6 @@ public class InicioSesionService {
      * @autor Manuel Alvial
      */
     public void save(InicioSesion u) {
-
         dataInicioSesion.save(u);
 
     }

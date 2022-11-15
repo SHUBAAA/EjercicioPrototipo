@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @autor Manuel Alvial
  */
 @Repository
-public interface RepoInicioSesion extends CrudRepository<InicioSesion, Long> {
+public interface RepoInicioSesion extends CrudRepository<InicioSesion, Integer> {
 
     /**
      * <p>

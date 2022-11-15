@@ -6,11 +6,11 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
@@ -42,12 +42,12 @@ class ProductoServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"producto1","producto2","producto3","producto4","producto5"})
+    @CsvSource({"producto1,descripcion1,categoria1", "producto2,descripcion2,categoria2","producto3,descripcion3,categoria3", "producto4,descripcion4,categoria4", "producto5,descripcion5,categoria5"})
     @Rollback(false)
     @Order(1)
     @DisplayName("Test Guardado producto")
-    public void testSaveProducto(String nombreProducto) {
-        Producto producto = new Producto(nombreProducto, "descripcionPrueba", 999999, "categoriaPrueba");
+    public void testSaveProducto(String nombreProducto, String descripcionProducto, String categoriaProducto) {
+        Producto producto = new Producto(nombreProducto, descripcionProducto, 999999, categoriaProducto);
         Producto productoGuardado = repoproducto.save(producto);
 
         assertNotNull(productoGuardado);
@@ -56,10 +56,10 @@ class ProductoServiceTest {
 
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5})
+    @ValueSource(ints = {1, 2, 3, 4, 5})
     @Rollback(false)
     @Order(2)
-    @DisplayName("Test Para Modificar Producto")
+    @DisplayName("Test Para Modificar Producto con valor incorrecto")
     public void testModificarProducto(int numeros) {
         String nombremod = "productomodificado";
         String descripcionmod = "descripcionmodificado";
@@ -76,13 +76,15 @@ class ProductoServiceTest {
         assertThat(productoModificado.get().getCategoria()).isEqualTo(categoriamod);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource({"producto1,descripcion1,categoria1", "producto2,descripcion2,categoria2","producto3,descripcion3,categoria3", "producto4,descripcion4,categoria4", "producto5,descripcion5,categoria5"})
     @Rollback(false)
+    @Order(3)
     @DisplayName("Test Para Modificar Producto")
-    public void testModificarProductomalo() {
-        String nombremod = "productomodificado";
-        String descripcionmod = "descripcionmodificado";
-        String categoriamod = "categoriaModificada";
+    public void testModificarProductomalo(String nombre, String descripcion, String categoria) {
+        String nombremod = "productomodificado2";
+        String descripcionmod = "descripcionmodificado2";
+        String categoriamod = "categoriaModificada2";
         int id = 1;
         Producto producto = new Producto(nombremod, descripcionmod, 333, categoriamod);
         producto.setId(id);
@@ -90,13 +92,13 @@ class ProductoServiceTest {
         repoproducto.save(producto);
         Optional<Producto> productoModificado = repoproducto.findById(id);
         assertThat(productoModificado.get().getId()).isEqualTo(id);
-        assertThat(productoModificado.get().getNombre()).isNotEqualTo("otronombre");
-        assertThat(productoModificado.get().getDescripcion()).isNotEqualTo("otradescripcion");
-        assertThat(productoModificado.get().getCategoria()).isNotEqualTo("otracategoria");
+        assertThat(productoModificado.get().getNombre()).isNotEqualTo(nombre);
+        assertThat(productoModificado.get().getDescripcion()).isNotEqualTo(descripcion);
+        assertThat(productoModificado.get().getCategoria()).isNotEqualTo(categoria);
     }
 
     @Test
-    @Order(3)
+    @Order(4)
     @DisplayName("Test Para Mostrar Lista de Productos")
     public void testMostrarlista() {
         List<Producto> productos = (List<Producto>) repoproducto.findAll();
@@ -104,9 +106,9 @@ class ProductoServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5})
+    @ValueSource(ints = {1, 2, 3, 4, 5})
     @Rollback(false)
-    @Order(4)
+    @Order(5)
     @DisplayName("Test Para Borrar Producto")
     public void testDelete(int numeros) {
         int id = numeros;
@@ -123,7 +125,7 @@ class ProductoServiceTest {
 
 
     @Test
-    @Order(5)
+    @Order(6)
     @DisplayName("Test Saber si la Lista de Productos esta vacia")
     public void testMostrarlistavacia() {
         List<Producto> productos = (List<Producto>) repoproducto.findAll();
