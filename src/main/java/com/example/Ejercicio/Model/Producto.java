@@ -1,7 +1,5 @@
 package com.example.Ejercicio.Model;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import javax.persistence.*;
 
 /**
@@ -38,6 +36,24 @@ public class Producto {
         this.descripcion = descripcion;
         this.cantidad = cantidad;
         this.categoria = categoria;
+    }
+
+    public Producto(String nombre, String descripcion, int cantidad, String categoria) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", cantidad=" + cantidad +
+                ", categoria='" + categoria + '\'' +
+                '}';
     }
 
     public int getId() {
@@ -79,4 +95,6 @@ public class Producto {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+
 }

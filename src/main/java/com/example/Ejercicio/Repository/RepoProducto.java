@@ -13,4 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RepoProducto extends CrudRepository<Producto, Integer> {
+    Producto findByNombre(String nombre);
 }
